@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	<meta charset="utf-8">
+    	<title>vPlotterWeb</title>
+		<link href="css/style.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<div id="menu">
+			<a href="index.html"><img class="icon" id="main_button" src="images/main.jpg" alt="main"/></a>
+		</div>
+		
+		<div id="config_menu">
+			<form action="../vPlotterAPI/set.php" method="get">
+				Motor distance (mm): <input id="motorsDistance" type="number" name="motorsDistance" min="500" max="2000" value="1500"><p></p>
+				Pulls Radius (mm): <input id="pulleyRadius" type="number" name="pulleyRadius" min="0" max="500" value="50"><p></p>
+				Steps per Rotation: <input id="stepsPerRotation" type="number" name="stepsPerRotation" min="2" max="10000" value="800"><p></p>
+				Step Delay (ms): <input id="stepDelay" type="number" name="stepDelay" min="0" max="10000" value="1"><p></p>
+				Pen Down Angle (deg): <input id="penDownAngle" type="number" name="penDownAngle" min="0" max="180" value="70"><p></p>
+				Pen UP Angle (deg):<input id="penUpAngle" type="number" name="penUpAngle" min="0" max="180" value="140"><p></p>
+				Pen Delay (ms): <input id="penDelay" type="number" name="penDelay" min="0" max="10000" value="2000"><p></p>
+				<input type="submit">
+			</form>
+		</div>
+
+		<div id="queue">
+			<p>Queue</p>
+		</div>
+
+		<script type="text/javascript" src="js/queue.js" defer></script>
+		<script type="text/javascript">
+			function request(url,callback){
+ 				var xhr = new XMLHttpRequest();
+  				xhr.onreadystatechange = ( function(myxhr){
+    				return function(){
+      					callback(myxhr);
+    				}
+  				})(xhr);
+  				xhr.open('GET',url, true);
+  				xhr.send('');
+			};
+
+			request('../vPlotterAPI/status.php', function(result){
+				var rawJson = result.response;
+  				var status = JSON.parse(rawJson);
+  				var options = status['options'];
+
+  				for (var opt in options){
+  					var element = document.getElementById( opt );
+  					element.value = options[opt];
+  				}
+			});
+		</script>
+	</body>
+</html>

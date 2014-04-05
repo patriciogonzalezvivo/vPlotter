@@ -1,0 +1,17 @@
+#config_menu{
+	position:absolute;
+	width: $dashboard_w_pct - 2.5%;
+	height: calc(100% - ( 32px + 25px) );
+	background-color: $pure_white;
+
+    border: 2px solid #DDD;
+    border-radius: 8px;
+
+    text-align: left;
+    font-size: 1em;
+    font-family: Arial, sans-serif;
+
+    form{
+        padding: 30px;
+    }
+}

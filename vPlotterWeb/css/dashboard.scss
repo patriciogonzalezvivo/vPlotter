@@ -1,0 +1,47 @@
+#dashboard {
+	position:absolute;
+	width: $dashboard_w_pct - 2.5%;
+	height: calc(100% - ( 32px + 25px) );
+	background-color: $pure_white;
+
+    border: 2px solid #DDD;
+    border-radius: 8px;
+
+    text-align: center;
+    color: #BBB;
+    font-size: 2em;
+    font-family: Arial, sans-serif;
+
+	#dropbox {
+        position: absolute;
+    	width: 100%;
+    	height: 100%;
+	}	    
+
+	.not-over {
+    	background-color: $chok_white;
+    }
+
+    .over{
+    	background-color: $pure_white;	
+    }
+
+    #preview{
+    	width: 100%;
+    	height: calc(100% - ( 32px + 10px ) );
+    	background-color: $pure_white;
+
+    	#addedIMG{
+    		width: 98%-$buttons_w_pct;
+    		height: 100%;
+            rotation-point:50% 50%;
+    	}
+    }
+
+    #buttons{
+        text-align: left;
+        color: #000;
+        font-size: 0.5em;
+        font-family: Arial, sans-serif;      
+    }
+}

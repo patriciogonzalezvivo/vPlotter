@@ -1,0 +1,80 @@
+body {
+  font-size: 0.9rem;
+  color: #666666;
+  text-align: justify;
+  background-color: white;
+  min-height: 100%; }
+
+#menu {
+  background-color: white;
+  text-align: right; }
+  #menu .icon {
+    width: 32px;
+    height: 32px; }
+
+#dashboard {
+  position: absolute;
+  width: 77.5%;
+  height: calc(100% - ( 32px + 25px) );
+  background-color: white;
+  border: 2px solid #DDD;
+  border-radius: 8px;
+  text-align: center;
+  color: #BBB;
+  font-size: 2em;
+  font-family: Arial, sans-serif; }
+  #dashboard #dropbox {
+    position: absolute;
+    width: 100%;
+    height: 100%; }
+  #dashboard .not-over {
+    background-color: #f1f1f1; }
+  #dashboard .over {
+    background-color: white; }
+  #dashboard #preview {
+    width: 100%;
+    height: calc(100% - ( 32px + 10px ) );
+    background-color: white; }
+    #dashboard #preview #addedIMG {
+      width: 88%;
+      height: 100%;
+      rotation-point: 50% 50%; }
+  #dashboard #buttons {
+    text-align: left;
+    color: #000;
+    font-size: 0.5em;
+    font-family: Arial, sans-serif; }
+
+#queue {
+  width: 20%;
+  height: 100%;
+  border: 2px solid #DDD;
+  border-radius: 8px;
+  float: right;
+  position: relative;
+  background-color: #f1f1f1;
+  text-align: center;
+  color: #BBB;
+  font-size: 2em;
+  font-family: Arial, sans-serif; }
+  #queue .printing_image {
+    width: 90%;
+    margin: 4%;
+    border: 2px solid #DDD;
+    border-radius: 8px; }
+  #queue .queue_image {
+    width: 60%;
+    margin: 5%; }
+
+#config_menu {
+  position: absolute;
+  width: 77.5%;
+  height: calc(100% - ( 32px + 25px) );
+  background-color: white;
+  border: 2px solid #DDD;
+  border-radius: 8px;
+  text-align: left;
+  font-size: 1em;
+  font-family: Arial, sans-serif; }
+  #config_menu form {
+    padding: 30px; }

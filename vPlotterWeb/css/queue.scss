@@ -1,0 +1,29 @@
+#queue{
+	width: 100%-($dashboard_w_pct);
+    height:100%;
+	border: 2px solid #DDD;
+    border-radius: 8px;
+
+	float:right;
+	position: relative;
+
+	background-color: $chok_white;
+
+	text-align: center;
+    color: #BBB;
+	font-size: 2em;
+    font-family: Arial, sans-serif;
+
+    .printing_image{
+    	width: 90%;
+    	margin: 4%;
+
+    	border: 2px solid #DDD;
+    	border-radius: 8px;
+    }
+
+    .queue_image{
+    	width: 60%;
+    	margin: 5%;
+    }
+}

@@ -1,0 +1,28 @@
+$chok_white:#F1F1F1;
+$pure_white:#FFFFFF;
+$soft_gray:#666666;		//	Text
+$blur_gray:#222222;		//	Almost Invisible Text
+$wolf_blue:#4E5D7F;		//	Links
+$pale_green:#188069;	//	Hovered Links
+$chok_white:#F1F1F1;	//	Background
+$pure_white:#FFFFFF;
+
+$dashboard_w_pct: 80;
+$buttons_w_pct: 10;
+$icons_size:32px;
+
+body{
+	font-size: 0.9rem;
+	color: $soft_gray;
+	text-align: justify;
+	background-color: $pure_white;
+    min-height:100%;
+}
+
+@import "menu";
+@import "dashboard";
+@import "queue";
+@import "config";
+
+
+

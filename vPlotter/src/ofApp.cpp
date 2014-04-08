@@ -4,7 +4,7 @@
 void ofApp::setup(){
     ofEnableAlphaBlending();
     ofSetVerticalSync(true);
-
+    
     // PLOTTER
     //
     plotter.setup(degPenUp,degPenDown,mmMotorsDistance,mmPulleyRadius,stepsPerRotation,sysGpio);

@@ -3,9 +3,9 @@
 
 #include "ofxOsc.h"
 #include "ofxSvg.h"
-#include "vPlotter.h"
+#include "ofxPiTFT.h"
 
-#include "FtfMirror.h"
+#include "vPlotter.h"
 
 class ofApp : public ofBaseApp{
 public:
@@ -24,24 +24,23 @@ public:
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
 
-#ifdef TARGET_RASPBERRY_PI
-    FrameBufferCopier fbcp;
-#endif
+    ofxPiTFT            smallDisplay;
     
-    ofxOscReceiver  receiver;
+    ofxOscReceiver      receiver;
+
+    vPlotter            plotter;
+    vector<ofPolyline>  shape;
+    ofRectangle         printArea;
     
-    vPlotter plotter;
-    vector<ofPolyline> shape;
-    ofRectangle printArea;
+    string              file;
     
-    float   stepDelay,penDelay;
-    float   scale,rotate;
+    float               stepDelay,penDelay;
+    float               scale,rotate;
     
-    int     degPenUp,degPenDown;
-    int     mmMotorsDistance,mmPulleyRadius,stepsPerRotation;
-    int     oscPort;
+    int                 degPenUp,degPenDown;
+    int                 mmMotorsDistance,mmPulleyRadius,stepsPerRotation;
+    int                 oscPort;
     
-    string  file;
-    bool    bFit;
-    bool    sysGpio;
+    bool                bFit;
+    bool                sysGpio;
 };

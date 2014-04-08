@@ -3,7 +3,6 @@
 //
 //  Created by Patricio Gonzalez Vivo on 12/1/13.
 //
-//
 //  Using 2x Pololu A4988 Stepper Driver
 //  http://www.pololu.com/product/1182
 

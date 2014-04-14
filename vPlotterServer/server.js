@@ -119,7 +119,6 @@ var server = http.createServer(function(req,res) {
             'scale': fields[1][1]
           }
           status.queue.push(queue_obj);
-          printFirstOnLine();
         })
         .on('progress', function(bytesReceived, bytesExpected) {
             //self.emit('progess', bytesReceived, bytesExpected)
@@ -128,6 +127,7 @@ var server = http.createServer(function(req,res) {
         })
         .on('end', function() {
           console.log('-> upload done');
+          printFirstOnLine();
         });
 
       form.parse(req);

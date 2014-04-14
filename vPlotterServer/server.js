@@ -6,18 +6,15 @@ var path = require('path');   // used for traversing your OS.
 var url = require('url');     // utility for URLs
 
 var formidable = require('formidable');  // uploading files;
-var util = require('util');
+var exec = require('child_process').exec;  // running cmd
 
 // Settings
 //
 var WWW_ROOT = "./www/";
 var HTTP_PORT = process.env.PORT || 8080;
-
-//  TODO:
-//        - load options from mongoDB
-//
+var vPlotterPIPE;
 var status = {
-  'printing' : '',
+  'printing' : false,
   'queue': new Array(),
   'options' : {
     'motorsDistance' : 1384,
@@ -30,7 +27,48 @@ var status = {
   }
 }
 
-// More advanced: https://npmjs.org/package/mime
+//  TODO:
+//        - load options from mongoDB
+//
+
+function printFirstOnLine(){
+  console.log('There are ' + status.queue.length + ' objects on the queue');
+  console.log('Printer is ' + status.printing);
+  if(status.printing == false && status.queue.length>0){
+    var command = './vPlotter -x -d '+status.options.motorsDistance +
+    ' -pr ' + status.options.pulleyRadius +
+    ' -spr ' + status.options.stepsPerRotation +
+    ' -sd ' + status.options.stepDelay +
+    ' -pd ' + status.options.penDownAngle +
+    ' -pu ' + status.options.penUpAngle +
+    ' -delay ' + status.options.penDelay +
+    ' -s ' + status.queue[0].scale +
+    ' -r ' + status.queue[0].rotate +
+    ' -i ' + status.queue[0].file;
+    console.log(command);
+    status.printing = true;
+    vPlotterPIPE = exec(command,function (error, stdout, stderr){
+      // console.log('stdout: '+stdout);
+      // console.log('stderr: '+stderr);
+      // if (error !== null) {
+        // console.log('exec error: ' + error);
+      // }
+
+      //  Erase the job from the queue
+      //
+      status.printing = false;
+      status.queue.shift();
+
+      if(status.queue.length>0){
+        printFirstOnLine();
+      }
+    });
+  }
+}
+
+
+// WEB SERVER
+//
 var server = http.createServer(function(req,res) {
   var parsedReq = url.parse(req.url);
 
@@ -74,12 +112,14 @@ var server = http.createServer(function(req,res) {
             file.path = form.uploadDir + "/" + file.name;
         })
         .on('file', function(field, file) {
+          console.log([field,file]);
           var queue_obj = {
             'file': file.name,
             'rotate': fields[0][1],
             'scale': fields[1][1]
           }
           status.queue.push(queue_obj);
+          printFirstOnLine();
         })
         .on('progress', function(bytesReceived, bytesExpected) {
             //self.emit('progess', bytesReceived, bytesExpected)
@@ -88,10 +128,6 @@ var server = http.createServer(function(req,res) {
         })
         .on('end', function() {
           console.log('-> upload done');
-          res.writeHead(200, {'content-type': 'text/plain'});
-          res.write('received fields:\n\n '+util.inspect(fields));
-          res.write('\n\n');
-          res.end('received files:\n\n '+util.inspect(files));
         });
 
       form.parse(req);
@@ -142,5 +178,4 @@ var server = http.createServer(function(req,res) {
     });
 	}
 }).listen(HTTP_PORT);
-
 console.log("Server started at http://localhost:" + HTTP_PORT);

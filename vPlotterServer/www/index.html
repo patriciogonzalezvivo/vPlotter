@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	<meta charset="utf-8">
+    	<title>vPlotterWeb</title>
+		<link href="css/style.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<div id="menu">
+			<a href="config.html"><img class="icon" id="config_button" src="images/gear.png" alt="config"/></a>
+		</div>
+		<div id="dashboard">
+			<div id="dropbox" class="not-over" >
+				<p>Drag your SVG file here</p>
+			</div>
+			<div id="preview" style="display:none;"></div>
+			<div id="buttons" style="display:none;">
+				Rotation: <input id="rotateNumber" type="number" name="rotate" min="0" max="360" value="1" onchange="OnSliderChanged(this)">
+				Scale: <input id="scaleSlider" type="range" name="scale" min="1" max="100" step="1" value="100" onchange="OnSliderChanged(this)">
+				<!-- <div id="printButton" class="not-over">Print</div> -->
+				<button type="button" onclick="upload()">Add to Queue</button>
+			</div>
+		</div>
+		<div id="queue">
+			<p>Queue</p>
+		</div>
+
+		<script type="text/javascript" src="js/main.js" defer></script>
+		<script type="text/javascript" src="js/queue.js" defer></script>
+	</body>
+</html>

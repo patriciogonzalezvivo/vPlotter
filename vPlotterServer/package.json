@@ -1,0 +1,17 @@
+{
+  "name": "vPlotterServer",
+  "version": "0.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "formidable": "^1.0.14",
+    "mongodb": "^1.4.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Patricio Gonzalez Vivo",
+  "license": "ISC"
+}

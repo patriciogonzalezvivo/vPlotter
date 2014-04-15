@@ -26,25 +26,23 @@ http://2e5.com/plotter/V/design/
 
 	sudo apt-get update
 	sudo apt-get upgrade
-	sudo apt-get install avahi-daemon apache2 php5 php5-json git-core screen htop
+	sudo apt-get install avahi-daemon git-core screen htop
 
-2. Install [wiringPi](http://wiringpi.com/download-and-install/) and Apache with PHP-JSON 
+2. Install Node.js
+
+	wget http://node-arm.herokuapp.com/node_latest_armhf.deb
+	sudo dpkg -i node_latest_armhf.deb
+
+3. Install [wiringPi](http://wiringpi.com/download-and-install/) and Apache with PHP-JSON 
 
 	cd ~
 	git clone git://git.drogon.net/wiringPi
 	cd wiringPi
 	./build
 
-3. Link the vPlotter API and Web to an webServer and set right PHP permissions
-
-	cd /var/www
-	ln -s /home/pi/openframeworks/apps/vPlotter vPlotter
-	cd vPlotter/vPlotterAPI
-	./install.sh
-
 ### TODO:
 	- precompile version of vPlotter inside vPlotterAPI
-	- install.sh should install install the vPlotterManager and auto load the GPIOs 
+	- install.sh should install the vPlotterManager and auto load the GPIOs 
 
 ## Precedents
 

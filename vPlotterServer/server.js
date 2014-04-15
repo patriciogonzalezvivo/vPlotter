@@ -29,8 +29,7 @@ var status = {
 
 //  TODO:
 //        - load options from mongoDB
-//        - rename .svg files to unique names
-//        - delete .svg after printing
+//        - make a shell bash that loads GPIOs, mongodb and node server.js
 //        - ADD OSC mode to website and API
 
 function printFirstInLine(){

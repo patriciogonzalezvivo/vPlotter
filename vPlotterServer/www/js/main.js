@@ -28,14 +28,15 @@ this.uploadPlace.addEventListener("drop", function(event) {
 
 	//	Make Preview
 	var preview = new FileReader();
-	preview.addEventListener('loadend', function(event) {
-		bin = preview.result;
+	preview.addEventListener('loadend', function() {
+		var bin = preview.result;
 
+		document.getElementById('OSCbox').style.display = 'none';
 		document.getElementById('dropbox').style.display = 'none';
 		var displayDiv = document.getElementById('preview');
-		displayDiv.style.display = 'block'
+		displayDiv.style.display = 'block';
 		var buttonsDiv = document.getElementById('buttons');
-		buttonsDiv.style.display = 'block'
+		buttonsDiv.style.display = 'block';
 
 		//	Add Image to Preview
 		var img = document.createElement("img");
@@ -45,20 +46,32 @@ this.uploadPlace.addEventListener("drop", function(event) {
 		img.src = bin;
 		displayDiv.appendChild(img);
 
-		var scaleSlider = document.getElementById('scaleSlider');
+		// var scaleSlider = document.getElementById('scaleSlider');
 	}, false);
 	preview.readAsDataURL(file);
 },false);
 
 
-//	ADD TO PRINT QUEUE
+//	ADD TO QUEUE
 //------------------------------------------------------------
 //
-function upload() {
+function addOSCToQueue(){
+	console.log("ADD OSC STREAM to queue");
+	var url = '/addOsc';
+	var data = new FormData();
+	data.append('rotate', 0);
+	data.append('scale', 100);
+	data.append('file', 'OSC');
+	var xhr = new XMLHttpRequest();
+	xhr.open('POST', url, true);
+	xhr.send(data);
+}
+
+function addFileToQueue() {
+
 	// Once the process of reading file
 	this.loadEnd = function() {
-
-		var url = '/add';
+		var url = '/addFile';
 		var data = new FormData();
 		data.append('rotate', rotate);
 		data.append('scale', scale*100);
@@ -66,11 +79,13 @@ function upload() {
 		var xhr = new XMLHttpRequest();
 		xhr.open('POST', url, true);
 		xhr.onload = function () {
-    	// do something to response
-    	console.log(this.responseText);
+			// do something to response
+			console.log(this.responseText);
 		};
 		xhr.send(data);
-	}
+
+		location.reload();
+	};
 
 	// Loading errors
 	this.loadError = function(event) {
@@ -87,26 +102,18 @@ function upload() {
 			default:
 				console.log('Unknown read error');
 		}
-	}
-
-	// Reading Progress
-	this.loadProgress = function(event) {
-		if (event.lengthComputable) {
-			var percentage = Math.round((event.loaded * 100) / event.total);
-		}
-	}
+	};
 
 	var reader = new FileReader();
 	reader.addEventListener('loadend', this.loadEnd, false);
-	reader.addEventListener('progress', this.loadProgress, false);
 	reader.addEventListener('error', this.loadError, false);
-	reader.readAsBinaryString(file)
+	reader.readAsBinaryString(file);
 }
 
 function OnSliderChanged(slider){
-	if (slider.id == "rotateNumber"){
+	if (slider.id === "rotateNumber"){
 		rotate = slider.value;
-	} else if (slider.id == "scaleSlider"){
+	} else if (slider.id === "scaleSlider"){
 		scale = slider.value*0.01;
 	}
 	var image = document.getElementById('addedIMG');

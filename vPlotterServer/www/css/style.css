@@ -18,15 +18,36 @@ body {
   height: calc(100% - ( 32px + 25px) );
   background-color: white;
   border: 2px solid #DDD;
-  border-radius: 8px;
-  text-align: center;
-  color: #BBB;
-  font-size: 2em;
-  font-family: Arial, sans-serif; }
+  border-radius: 8px; }
+  #dashboard #OSCbox {
+    position: relative;
+    float: left;
+    width: 49%;
+    height: 100%;
+    border: 2px solid #DDD;
+    border-radius: 8px;
+    background-color: #f1f1f1; }
+    #dashboard #OSCbox p {
+      position: relative;
+      top: 40%;
+      text-align: center;
+      color: #BBB;
+      font-size: 2em;
+      font-family: Arial, sans-serif; }
   #dashboard #dropbox {
-    position: absolute;
-    width: 100%;
-    height: 100%; }
+    position: relative;
+    float: left;
+    width: 49%;
+    height: 100%;
+    border: 2px solid #DDD;
+    border-radius: 8px; }
+    #dashboard #dropbox p {
+      position: relative;
+      top: 40%;
+      text-align: center;
+      color: #BBB;
+      font-size: 2em;
+      font-family: Arial, sans-serif; }
   #dashboard .not-over {
     background-color: #f1f1f1; }
   #dashboard .over {
@@ -46,12 +67,12 @@ body {
     font-family: Arial, sans-serif; }
 
 #queue {
+  position: absolute;
+  left: 79%;
   width: 20%;
-  height: 100%;
+  height: 90%;
   border: 2px solid #DDD;
   border-radius: 8px;
-  float: right;
-  position: relative;
   background-color: #f1f1f1;
   text-align: center;
   color: #BBB;

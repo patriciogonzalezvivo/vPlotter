@@ -5,6 +5,11 @@ sudo apt-get update
 sudo apt-get upgrade
 sudo apt-get avahi-daemon netatalk git-core build-essential scons libpcre++-dev xulrunner-dev libboost-dev libboost-program-options-dev libboost-thread-dev libboost-filesystem-dev distcc
 
+# Install Server
+chmod 755 vPlotterServer.sh
+sudo cp vPlotterServer.sh /etc/init.d
+sudo update-rc.d vPlotterServer.sh defaults
+
 # # DistCC
 # mkdir $HOME/.distcc/
 # echo "ubuntu.local" >> $HOME/.distcc/hosts
@@ -39,8 +44,3 @@ scons
 sudo scons --prefix=/opt/mongo install
 PATH=$PATH:/opt/mongo/bin/
 export PATH
-
-# Install Server
-chmod 755 vPlotterServer.sh
-sudo cp vPlotterServer.sh /etc/init.d
-sudo update-rc.d vPlotterServer.sh defaults

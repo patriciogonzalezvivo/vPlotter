@@ -1,17 +1,17 @@
 #queue{
-	width: 100%-($dashboard_w_pct);
-    height:100%;
-	border: 2px solid #DDD;
-    border-radius: 8px;
+		position: absolute;
+		left: -1% + $dashboard_w_pct;
 
-	float:right;
-	position: relative;
+		width: 100%-($dashboard_w_pct);
+  	height: 90%;
+		border: 2px solid #DDD;
+  	border-radius: 8px;
 
-	background-color: $chok_white;
+		background-color: $chok_white;
 
-	text-align: center;
+		text-align: center;
     color: #BBB;
-	font-size: 2em;
+		font-size: 2em;
     font-family: Arial, sans-serif;
 
     .printing_image{

@@ -63,3 +63,6 @@ Desktop.ini
 # Miscellaneous
 .mailmap
 www/data
+
+/vPlotterServer/www/js/queue-ck.js
+/vPlotterServer/www/js/main-ck.js

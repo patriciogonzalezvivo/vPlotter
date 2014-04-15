@@ -3,27 +3,60 @@
 	width: $dashboard_w_pct - 2.5%;
 	height: calc(100% - ( 32px + 25px) );
 	background-color: $pure_white;
+	border: 2px solid #DDD;
+	border-radius: 8px;
 
-    border: 2px solid #DDD;
-    border-radius: 8px;
+		#OSCbox {
+			position: relative;
+			float: left;
 
-    text-align: center;
-    color: #BBB;
-    font-size: 2em;
-    font-family: Arial, sans-serif;
+			// top: 25%;
 
-	#dropbox {
-        position: absolute;
-    	width: 100%;
-    	height: 100%;
-	}	    
+			width: 49%;
+			height: 100%;
 
-	.not-over {
+			border: 2px solid #DDD;
+			border-radius: 8px;
+			background-color: $chok_white;
+
+			p {
+				position: relative;
+				top: 40%;
+				text-align: center;
+				color: #BBB;
+				font-size: 2em;
+				font-family: Arial, sans-serif;
+			}
+		}
+
+		#dropbox {
+      position: relative;
+			float: left;
+			// top: 25%;
+
+    	width: 49%;
+			height: 100%;
+
+			border: 2px solid #DDD;
+			border-radius: 8px;
+
+			p {
+				position: relative;
+				top: 40%;
+
+				text-align: center;
+				color: #BBB;
+				font-size: 2em;
+				font-family: Arial, sans-serif;
+			}
+		}
+
+		.not-over {
     	background-color: $chok_white;
     }
 
     .over{
-    	background-color: $pure_white;	
+    	background-color: $pure_white;
     }
 
     #preview{
@@ -42,6 +75,6 @@
         text-align: left;
         color: #000;
         font-size: 0.5em;
-        font-family: Arial, sans-serif;      
+        font-family: Arial, sans-serif;
     }
 }

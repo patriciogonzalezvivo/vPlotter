@@ -57,16 +57,26 @@ function printFirstInLine(){
 
     var actualFile = status.queue[0]
 
-    var command = './vPlotter -x -d '+status.options.motorsDistance +
+    var command = './vPlotter -d '+status.options.motorsDistance +
     ' -pr ' + status.options.pulleyRadius +
     ' -spr ' + status.options.stepsPerRotation +
     ' -sd ' + status.options.stepDelay +
     ' -pd ' + status.options.penDownAngle +
     ' -pu ' + status.options.penUpAngle +
-    ' -delay ' + status.options.penDelay +
-    ' -s ' + actualFile.scale +
-    ' -r ' + actualFile.rotate +
-    ' -i ' + actualFile.file;
+    ' -delay ' + status.options.penDelay;
+
+    if(status.options.debugDisplay){
+      command += ' -x';
+    }
+
+    if(actualFile.file == 'OSC'){
+      command += ' -o ' + status.options.OSCPort;
+    } else {
+      command += ' -s ' + actualFile.scale +
+                 ' -r ' + actualFile.rotate +
+                 ' -i ' + actualFile.file;
+    }
+
     console.log(command);
     status.printing = true;
     vPlotterPIPE = exec(command,function (error, stdout, stderr){
@@ -79,10 +89,12 @@ function printFirstInLine(){
       //  Erase the job from the queue and the file
       //
       status.printing = false;
-      fs.unlink('www/data/'+actualFile.file, function (err) {
-        if (err) console.log(err);
-        console.log(actualFile.file + ' successfully deleted');
-      });
+      if(actualFile.file != 'OSC'){
+        fs.unlink('www/data/'+actualFile.file, function (err) {
+          if (err) console.log(err);
+          console.log(actualFile.file + ' successfully deleted');
+        });
+      }
       status.queue.shift();
 
       if(status.queue.length>0){
@@ -118,7 +130,16 @@ var server = http.createServer(function(req,res) {
     console.log("Options now are: ");
     console.log(status.options);
   }
-  else if(parsedReq.pathname == "/add" && req.method.toLowerCase() == 'post'){
+  else if(parsedReq.pathname == "/addOsc" && req.method.toLowerCase() == 'post'){
+    var queue_obj = {
+      'file': 'OSC',
+      'rotate': 0,
+      'scale': 100
+    }
+    status.queue.push(queue_obj);
+    printFirstInLine();
+  }
+  else if(parsedReq.pathname == "/addFile" && req.method.toLowerCase() == 'post'){
     //  UPLOAD FILE & ADD TO QUEUE
     //
     // parse a file upload

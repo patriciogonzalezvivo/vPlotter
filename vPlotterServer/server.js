@@ -29,12 +29,17 @@ var status = {
 
 //  TODO:
 //        - load options from mongoDB
-//
+//        - rename .svg files to unique names
+//        - delete .svg after printing
+//        - ADD OSC mode to website and API
 
-function printFirstOnLine(){
+function printFirstInLine(){
   console.log('There are ' + status.queue.length + ' objects on the queue');
   console.log('Printer is ' + status.printing);
   if(status.printing == false && status.queue.length>0){
+
+    var actualFile = status.queue[0]
+
     var command = './vPlotter -x -d '+status.options.motorsDistance +
     ' -pr ' + status.options.pulleyRadius +
     ' -spr ' + status.options.stepsPerRotation +
@@ -42,9 +47,9 @@ function printFirstOnLine(){
     ' -pd ' + status.options.penDownAngle +
     ' -pu ' + status.options.penUpAngle +
     ' -delay ' + status.options.penDelay +
-    ' -s ' + status.queue[0].scale +
-    ' -r ' + status.queue[0].rotate +
-    ' -i ' + status.queue[0].file;
+    ' -s ' + actualFile.scale +
+    ' -r ' + actualFile.rotate +
+    ' -i ' + actualFile.file;
     console.log(command);
     status.printing = true;
     vPlotterPIPE = exec(command,function (error, stdout, stderr){
@@ -54,18 +59,21 @@ function printFirstOnLine(){
         // console.log('exec error: ' + error);
       // }
 
-      //  Erase the job from the queue
+      //  Erase the job from the queue and the file
       //
       status.printing = false;
+      fs.unlink('www/data/'+actualFile.file, function (err) {
+        if (err) console.log(err);
+        console.log(actualFile.file + ' successfully deleted');
+      });
       status.queue.shift();
 
       if(status.queue.length>0){
-        printFirstOnLine();
+        printFirstInLine();
       }
     });
   }
 }
-
 
 // WEB SERVER
 //
@@ -109,7 +117,9 @@ var server = http.createServer(function(req,res) {
             fields.push([field, value]);
         })
         .on('fileBegin', function(name, file){
-            file.path = form.uploadDir + "/" + file.name;
+            var filename = "img_" + Date.now()+".svg";
+            file.name = filename;
+            file.path = form.uploadDir + "/" + filename;//file.name;
         })
         .on('file', function(field, file) {
           console.log([field,file]);
@@ -127,7 +137,7 @@ var server = http.createServer(function(req,res) {
         })
         .on('end', function() {
           console.log('-> upload done');
-          printFirstOnLine();
+          printFirstInLine();
         });
 
       form.parse(req);

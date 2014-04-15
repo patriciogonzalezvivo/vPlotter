@@ -13,6 +13,8 @@
 
 		<div id="config_menu">
 			<form action="/set" method="get">
+				<h3>Common Options</h3>
+				<p></p>
 				Motor distance (mm): <input id="motorsDistance" type="number" name="motorsDistance" min="500" max="2000" value="1500"><p></p>
 				Pulls Radius (mm): <input id="pulleyRadius" type="number" name="pulleyRadius" min="0" max="500" value="50"><p></p>
 				Steps per Rotation: <input id="stepsPerRotation" type="number" name="stepsPerRotation" min="2" max="10000" value="800"><p></p>
@@ -20,6 +22,10 @@
 				Pen Down Angle (deg): <input id="penDownAngle" type="number" name="penDownAngle" min="0" max="180" value="70"><p></p>
 				Pen UP Angle (deg):<input id="penUpAngle" type="number" name="penUpAngle" min="0" max="180" value="140"><p></p>
 				Pen Delay (ms): <input id="penDelay" type="number" name="penDelay" min="0" max="10000" value="2000"><p></p>
+				Debug Display (is the RPI plug to a screen): <input id="debugDisplay" type="checkbox" name="debugDisplay" value="true" checked><p></p>
+				<h3>OF Addon Mode</h3>
+				<p></p>
+				Osc Port: <input id="OSCPort" type="number" name="OSCPort" min="0" max="999999" value="101010"><p></p>
 				<input type="submit">
 			</form>
 		</div>
@@ -47,8 +53,12 @@
   				var options = status['options'];
 
   				for (var opt in options){
-  					var element = document.getElementById( opt );
-  					element.value = options[opt];
+  					var element = document.getElementById(opt);
+						if(opt == 'debugDisplay'){
+							element.checked = options[opt];
+						} else {
+							element.value = options[opt];
+						}
   				}
 			});
 		</script>

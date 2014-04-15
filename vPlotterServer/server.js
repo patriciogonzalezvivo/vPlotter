@@ -1,17 +1,23 @@
+//  TODO:
+//        - ADD OSC mode to website and API
+
 //  Modules
 //
 var http = require("http");   // http server
 var fs = require('fs');       // filesystem.
 var path = require('path');   // used for traversing your OS.
 var url = require('url');     // utility for URLs
+var exec = require('child_process').exec;  // running cmd
 
 var formidable = require('formidable');  // uploading files;
-var exec = require('child_process').exec;  // running cmd
+var mongo = require('mongodb');  // MongoDB
 
 // Settings
 //
 var WWW_ROOT = "./www/";
-var HTTP_PORT = process.env.PORT || 8080;
+var HTTP_PORT = 8080;
+var MONGO_PORT = 27017;
+
 var vPlotterPIPE;
 var status = {
   'printing' : false,
@@ -23,15 +29,27 @@ var status = {
     'stepDelay' : 2,
     'penDownAngle' : 140,
     'penUpAngle' : 70,
-    'penDelay': 200,
+    'penDelay' : 200,
+    'OSCPort' : 101010,
+    'debugDisplay' : true
   }
 }
 
-//  TODO:
-//        - load options from mongoDB
-//        - make a shell bash that loads GPIOs, mongodb and node server.js
-//        - ADD OSC mode to website and API
+//  MongoDB
+//
+// var Server = mongo.Server,
+//     Db = mongo.Db,
+//     assert = require('assert')
+//     BSON = mongo.BSONPure;
+// var server = new Server('localhost', MONGO_PORT, {auto_reconnect: true});
+// db = new Db('vPlotter', server);
+// db.open(function(err, db) {
+//   db.collection('pictures', function(err, collection){
+//   }
+// });
 
+//  vPlotter App
+//
 function printFirstInLine(){
   console.log('There are ' + status.queue.length + ' objects on the queue');
   console.log('Printer is ' + status.printing);
@@ -92,6 +110,11 @@ var server = http.createServer(function(req,res) {
     var url_parts = url.parse(req.url, true);
     var query = url_parts.query;
     status.options = query;
+    if(query.debugDisplay==null){
+      status.options.debugDisplay = false;
+    } else {
+      status.options.debugDisplay = true;
+    }
     console.log("Options now are: ");
     console.log(status.options);
   }

@@ -174,7 +174,6 @@ void ofApp::draw(){
     ofScale(2.0, 2.0);
     plotter.draw();
     ofPopMatrix();
-    fbcp.Copy();
 #else
     ofPushMatrix();
     ofScale(0.5, 0.5);

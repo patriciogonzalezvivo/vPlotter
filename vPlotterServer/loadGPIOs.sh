@@ -1,0 +1,1 @@
+../vPlotter/bin/loadGPIOs.sh

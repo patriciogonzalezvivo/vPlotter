@@ -19,21 +19,19 @@ var HTTP_PORT = 8080;
 var MONGO_PORT = 27017;
 
 var vPlotterPIPE;
-var status = {
-  'printing' : false,
-  'queue': new Array(),
-  'options' : {
-    'motorsDistance' : 1384,
-    'pulleyRadius' : 6,
-    'stepsPerRotation' : 800,
-    'stepDelay' : 2,
-    'penDownAngle' : 140,
-    'penUpAngle' : 70,
-    'penDelay' : 200,
-    'OSCPort' : 101010,
-    'debugDisplay' : true
-  }
-}
+var status = {'printing' : false,
+              'queue': [],
+              'options' : {'motorsDistance' : 1384,
+                           'pulleyRadius' : 6,
+                           'stepsPerRotation' : 800,
+                           'stepDelay' : 2,
+                           'penDownAngle' : 140,
+                           'penUpAngle' : 70,
+                           'penDelay' : 200,
+                           'OSCPort' : 101010,
+                           'debugDisplay' : true
+                          }
+             };
 
 //  MongoDB
 //
@@ -50,36 +48,34 @@ var status = {
 
 //  vPlotter App
 //
-function printFirstInLine(){
-  console.log('There are ' + status.queue.length + ' objects on the queue');
-  console.log('Printer is ' + status.printing);
-  if(status.printing == false && status.queue.length>0){
+function printFirstInLine() {
+    console.log('There are ' + status.queue.length + ' objects on the queue');
+    console.log('Printer is ' + status.printing);
+    if (status.printing === false && status.queue.length > 0) {
+        var actualFile = status.queue[0],
+        command = './vPlotter -d ' + status.options.motorsDistance +
+            ' -pr ' + status.options.pulleyRadius +
+            ' -spr ' + status.options.stepsPerRotation +
+            ' -sd ' + status.options.stepDelay +
+            ' -pd ' + status.options.penDownAngle +
+            ' -pu ' + status.options.penUpAngle +
+            ' -delay ' + status.options.penDelay;
 
-    var actualFile = status.queue[0]
+        if (status.options.debugDisplay) {
+            command += ' -x';
+        }
 
-    var command = './vPlotter -d '+status.options.motorsDistance +
-    ' -pr ' + status.options.pulleyRadius +
-    ' -spr ' + status.options.stepsPerRotation +
-    ' -sd ' + status.options.stepDelay +
-    ' -pd ' + status.options.penDownAngle +
-    ' -pu ' + status.options.penUpAngle +
-    ' -delay ' + status.options.penDelay;
-
-    if(status.options.debugDisplay){
-      command += ' -x';
-    }
-
-    if(actualFile.file == 'OSC'){
-      command += ' -o ' + status.options.OSCPort;
-    } else {
-      command += ' -s ' + actualFile.scale +
+        if (actualFile.file === 'OSC') {
+            command += ' -o ' + status.options.OSCPort;
+        } else {
+            command += ' -s ' + actualFile.scale +
                  ' -r ' + actualFile.rotate +
                  ' -i ' + actualFile.file;
-    }
+        }
 
     console.log(command);
     status.printing = true;
-    vPlotterPIPE = exec(command,function (error, stdout, stderr){
+    vPlotterPIPE = exec(command, function (error, stdout, stderr) {
       // console.log('stdout: '+stdout);
       // console.log('stderr: '+stderr);
       // if (error !== null) {
@@ -89,15 +85,15 @@ function printFirstInLine(){
       //  Erase the job from the queue and the file
       //
       status.printing = false;
-      if(actualFile.file != 'OSC'){
-        fs.unlink('www/data/'+actualFile.file, function (err) {
-          if (err) console.log(err);
+      if (actualFile.file !== 'OSC') {
+        fs.unlink('www/data/' + actualFile.file, function (err) {
+          if (err) { console.log(err); }
           console.log(actualFile.file + ' successfully deleted');
         });
       }
       status.queue.shift();
 
-      if(status.queue.length>0){
+      if (status.queue.length > 0) {
         printFirstInLine();
       }
     });
@@ -106,17 +102,17 @@ function printFirstInLine(){
 
 // WEB SERVER
 //
-var server = http.createServer(function(req,res) {
+var server = http.createServer( function( req , res ) {
   var parsedReq = url.parse(req.url);
 
-  if(req.url == "/status.json") {
+  if (req.url === "/status.json") {
     //  ECHO STATUS
     //
     res.writeHead(200, { 'Content-Type':'application/json'}); //, "Access-Control-Allow-Origin":"*"
     res.write(JSON.stringify(status));
     res.end();
   }
-  else if(parsedReq.pathname == "/set"){
+  else if(parsedReq.pathname === "/set") {
     //  SET OPTIONS
     //
     var url_parts = url.parse(req.url, true);
@@ -140,6 +136,7 @@ var server = http.createServer(function(req,res) {
     printFirstInLine();
   }
   else if(parsedReq.pathname == "/addFile" && req.method.toLowerCase() == 'post'){
+      console.log("File recived");
     //  UPLOAD FILE & ADD TO QUEUE
     //
     // parse a file upload

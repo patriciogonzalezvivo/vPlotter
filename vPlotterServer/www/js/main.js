@@ -84,7 +84,7 @@ function addFileToQueue() {
 		};
 		xhr.send(data);
 
-		location.reload();
+//		location.reload();
 	};
 
 	// Loading errors

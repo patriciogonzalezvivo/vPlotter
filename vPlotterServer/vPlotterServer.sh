@@ -1,9 +1,18 @@
 #!/bin/bash
+# /etc/init.d/vPlotterServer.sh
 
-SERVER_PATH=/home/pi/openframeworks/apps/vPlotter/vPlotterServer
-#SERVER_PATH=/Users/Patricio/Desktop/openFrameworks/apps/vPlotter/vPlotterServer
+### BEGIN INIT INFO
+# Provides:          vPlotterServer
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: vPlotter web server
+# Description:       Open GPIO's and run the node.js server that administrate vPlotter
+### END INIT INFO
+
+SERVER_PATH=/home/pi/openFrameworks/apps/vPlotter/vPlotterServer
 SERVER_JS=server.js
-#USER=patricio
 USER=pi
 OUT=nodejs.log
 

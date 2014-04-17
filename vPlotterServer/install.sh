@@ -26,21 +26,21 @@ sudo update-rc.d vPlotterServer.sh defaults
 # rmake Release -C /home/pi/openFrameworks/libs/openFrameworksCompiled/project
 
 # WiringPi
-cd ~
-git clone git://git.drogon.net/wiringPi
-cd wiringPi
-./build
+#cd ~
+#git clone git://git.drogon.net/wiringPi
+#cd wiringPi
+#./build
 
 # Node.js
-cd ~
-wget http://node-arm.herokuapp.com/node_latest_armhf.deb
-sudo dpkg -i node_latest_armhf.deb
+#cd ~
+#wget http://node-arm.herokuapp.com/node_latest_armhf.deb
+#sudo dpkg -i node_latest_armhf.deb
 
 # MongoDB
-cd ~
-git clone https://github.com/skrabban/mongo-nonx86
-cd mongo-nonx86
-scons
-sudo scons --prefix=/opt/mongo install
-PATH=$PATH:/opt/mongo/bin/
-export PATH
+#cd ~
+#git clone https://github.com/skrabban/mongo-nonx86
+#cd mongo-nonx86
+#scons
+#sudo scons --prefix=/opt/mongo install
+#PATH=$PATH:/opt/mongo/bin/
+#export PATH

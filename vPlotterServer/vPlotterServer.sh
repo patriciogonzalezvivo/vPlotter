@@ -1,10 +1,11 @@
 #!/bin/bash
 
 SERVER_PATH=/home/pi/openframeworks/apps/vPlotter/vPlotterServer
-SERVER_DB=$SERVER_PATH/data/db/
-SERVER_JS=$SERVER_PATH/server.js
+#SERVER_PATH=/Users/Patricio/Desktop/openFrameworks/apps/vPlotter/vPlotterServer
+SERVER_JS=server.js
+#USER=patricio
 USER=pi
-OUT=$SERVER_PATH/nodejs.log
+OUT=nodejs.log
 
 case "$1" in
 
@@ -15,14 +16,13 @@ start)
   sudo -u $USER gpio export 18 OUT
   sudo -u $USER gpio export 22 OUT
   sudo -u $USER gpio export 23 OUT
-  echo "Starting Node.js and MongoDB: $SERVER_DB"
-  sudo -u $USER mongod --dbpath $SERVER_DB&
-	sudo -u $USER node $SERVER_JS > $OUT 2>$OUT &
+  echo "Starting Node.js"
+  cd $SERVER_PATH
+  sudo -u $USER node $SERVER_JS >> $OUT 2>>$OUT&
 	;;
 
 stop)
 	killall node
-  killall mongodb
 	;;
 
 *)

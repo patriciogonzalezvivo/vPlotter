@@ -11,7 +11,7 @@ sudo cp vPlotterServer.sh /etc/init.d
 sudo update-rc.d vPlotterServer.sh defaults
 
 # # DistCC
-# mkdir $HOME/.distcc/
+#mkdir $HOME/.distcc/
 # echo "ubuntu.local" >> $HOME/.distcc/hosts
 # echo "alias rmake='make -j 8 CXX=/usr/lib/distcc/arm-linux-gnueabihf-g++ CC=/usr/lib/distcc/arm-linux-gnueabihf-gcc'" >> ~/.bashrc
 #
@@ -26,15 +26,15 @@ sudo update-rc.d vPlotterServer.sh defaults
 # rmake Release -C /home/pi/openFrameworks/libs/openFrameworksCompiled/project
 
 # WiringPi
-#cd ~
-#git clone git://git.drogon.net/wiringPi
-#cd wiringPi
-#./build
+cd ~
+git clone git://git.drogon.net/wiringPi
+cd wiringPi
+./build
 
 # Node.js
-#cd ~
-#wget http://node-arm.herokuapp.com/node_latest_armhf.deb
-#sudo dpkg -i node_latest_armhf.deb
+cd ~
+wget http://node-arm.herokuapp.com/node_latest_armhf.deb
+sudo dpkg -i node_latest_armhf.deb
 
 # MongoDB
 #cd ~

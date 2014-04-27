@@ -242,7 +242,7 @@ Because the servo use frequency of pulses It will use the GPIO number 18 that ha
 	#define STEP_PIN_M2 23
 	#define DIR_PIN_M2 22
 
-![A4988](images/A4988.png" width="575")
+![A4988](images/A4988.png)
 
 
 ### 3.Software

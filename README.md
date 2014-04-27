@@ -286,14 +286,17 @@ Once again, it's highly possible that the user have the technical knowledge to u
 
 2. Once you have your openFrameworks installed and working (please check it compiling some of the examples), clone this repository inside the `/home/pi/openframeworks/apps` folder.
 
+~~~
 	cd ~/openFrameworks/apps
 	git clone https://github.com/patriciogonzalezvivo/vPlotter
-	
+~~~
 
 5. The last step is to run the installation script which will install [Node.js](http://nodejs.org/) for the server, [WiringPi](https://projects.drogon.net/raspberry-pi/wiringpi/) to comunicate through the GPIOs, compile `vPlotter` and install `vPlotterServer` as a local daemon.
 
+~~~
 	cd ~/openFrameworks/apps/vPlotter
 	./install.sh
+~~~
 
 ### 4.Precedents & research
 

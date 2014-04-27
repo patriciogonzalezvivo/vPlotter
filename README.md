@@ -6,7 +6,7 @@ The vPlotter is essentially a vertical drawing machine that consist on a sharpie
 
 The maths involves on the movement of the sharpie over the surface is extremely simple. It require to know the distance between the motors to calculate how much string distance each motor have to give to the sharpie (plotter head). This distance could be calculated using Pythagorus' theorem.
 
-![GRAPH](http://academy.cba.mit.edu/2013/labs/amsterdam/class_15_machinedesign/drawing-1.png" width="575")
+![GRAPH](http://academy.cba.mit.edu/2013/labs/amsterdam/class_15_machinedesign/drawing-1.png)
 
 Both motors are attached to the wall at the same height to the floor separated by a given distance. The more distance there is between them, the more bigger area to draw we have. I usually separate the motors by 1.5 meters (1500 mm). 
 
@@ -27,7 +27,7 @@ Knowing this we can calculate the position of the plotter head using Pythagorus'
 
 To have precise control on the motors movements, I'm using two [NEMA 17 steppers motors](https://ultimachine.com/content/kysan-1124090-nema-17-stepper-motor) controlled with a [Pololu A4988 Stepper Driver](https://ultimachine.com/content/pololu-a4988-stepper-driver-heatsink-kit) each one. 
 
-[![nema17](images/nema17.png" width="575" "NEMA 17 steppers motor")](https://ultimachine.com/content/kysan-1124090-nema-17-stepper-motor) 
+[![nema17](images/nema17.png)](https://ultimachine.com/content/kysan-1124090-nema-17-stepper-motor) 
 
 Nema 17 motors have 200 steps for rotation but by enabling quarters of steps on the Pololu drivers we can obtain up to 800 steps for rotation which means tons more of precision. Next we need to calculate the circumference of the pulleys to calculate how many millimeters we have for step. In my case I'm using two [Timing Pulley GT2 of 20 tooth](https://ultimachine.com/content/timing-pulley-gt2-20-tooth) which have a bore of 5mm and match the [GT2 Timing Belt](https://ultimachine.com/content/timing-belt-gt2-custom-length) that holds the plotter header. From that we can calculate the amount of step using this formulas:
 
@@ -230,7 +230,7 @@ Because of this versatility and low cost, I chose the RaspberryPi as the perfect
 
 As I mention before the RaspberryPi have some General Input's and Outputs (GPIO) that will let us connect this board to the stepper motors drivers (Pololu) and the mini servo motors.
 
-![Electronic Board](images/electronic.jpg" width="575)
+![Electronic Board](images/electronic.jpg)
 
 Because the servo use frequency of pulses It will use the GPIO number 18 that have PWM capabilities. For the two motor drivers we use the GPIOs 4, 17, 23 and 22. Each driver will require both a _step_ and a _direction_ pulse to know when and who to make the rotation. This values can be modify on top of the `vPlotter.h` file
 
@@ -274,7 +274,7 @@ In this case we are using the program ['potrace'](http://potrace.sourceforge.net
 
 But not all user are confortable running linux commands as part of their creative practice. That's why I design a Node.js server that provides an web API to administrate calls to the vPlotter. In any time users can ask for jobs in the plotter queue together with the setup parameters by making a call to `rpi.local:8080/status.json`. Using the same API users can `add` task to the queue or change the setting options of the vPlotter. An hypothetical user with medium knowledge on HTML/CSS/JS can use the plotter remotely sending and receiving calls to this API.
 
-![Modular design of the vPloter](images/diagram.png" width="575" "Modular design")
+![Modular design of the vPloter](images/diagram.png)
 
 Once again, it's highly possible that the user have the technical knowledge to use the API that's why I also incorporate on the server a web site from witch is possible to drag&drop files to the queue. With this I design a tool that could be access from a big spectrum of architectural layers.
 
@@ -303,25 +303,25 @@ Wall Plotter have been around for a while. My work is mostly continuing what oth
 
 In my case I start working based on [Alexander Weber](http://tinkerlog.com/) wall plotter call [Kritzler](http://tinkerlog.com/2011/09/02/der-kritzler/). He have done an amazing work documenting the process together with comprenhansable [code](https://github.com/tinkerlog/Kritzler). This version is designed to run with an Arduino plugged to a computer. My first efforts in this projects was porting the code to openFrameworks to then compile and run on the RaspberryPi, but the basic core logics behind the algorithmic kinematics are still pretty much the same as Alex wrote.
 
-[![Kritzler by Alexander Weber](http://tinkerlog.com/wordpress/wp-content/uploads/2011/09/b_img-1956.jpg" width="575" "Kritzler by Alexander Weber")](http://tinkerlog.com/2011/09/02/der-kritzler/)
+[![Kritzler by Alexander Weber](http://tinkerlog.com/wordpress/wp-content/uploads/2011/09/b_img-1956.jpg)](http://tinkerlog.com/2011/09/02/der-kritzler/)
 
-[![Alexander documentation](http://tinkerlog.com/wordpress/wp-content/uploads/2011/09/b_img-1366.jpg" width="575" "Alex's documentation")](http://tinkerlog.com/2011/09/02/der-kritzler/)
+[![Alexander documentation](http://tinkerlog.com/wordpress/wp-content/uploads/2011/09/b_img-1366.jpg)](http://tinkerlog.com/2011/09/02/der-kritzler/)
 
 While I was experimenting with the Plotter I rapidly discover how important is to calculate the right printing area. The variations on the tensions on the string that holds the plotter head is vital to obtain good results on the marker traces.
 
 Doing some research I found some valuable documentation on [this website](http://2e5.com/plotter/V/design/) of how to obtain both resolution and tension coefficient. Since them are presented in Python I translate them into C++ and added to some methods and functions that calculate the best area given a specific distance between the motors.
 
-[![Printing Area](http://2e5.com/plotter/V/design/vPlotterMap.png" width="575" "White areas have the correct tension and presition")](http://2e5.com/plotter/V/design/)
+[![Printing Area](http://2e5.com/plotter/V/design/vPlotterMap.png)](http://2e5.com/plotter/V/design/)
 
 The presence of mathematics concept on drawings have a long history. The laws of perspective and proportions have been one of the first technical tools we use. In my process of making a drawing machine I learn how them connect and work together with physics and mechanical principles. Like Russians Dolls the knowledge embed in a tools is passed in the what the apparatus been constructed by it. At the end, tools become an extension of our body expanding our perception and expressive capabilities because they are constructed and shaped by the tissue of our imagination.
 
 Sometimes drawing tools doesn't born from a long history of techniques and apparatus. They are discovered as the repurpose of everyday machines this is the case of the drawings made by [Echo Yang](http://www.junk-culture.com/2014/02/designer-transforms-old-school-analog.html#more).
 
-[![Echo Yang's drawing machine](http://4.bp.blogspot.com/-VSzsgancGos/Uw8_8qaYSpI/AAAAAAAAgJ4/djprbHiZl30/s1600/Machines3.jpg" width="575" "Echo Yang's drawing machine")](http://www.junk-culture.com/2014/02/designer-transforms-old-school-analog.html#more)
+[![Echo Yang's drawing machine](http://4.bp.blogspot.com/-VSzsgancGos/Uw8_8qaYSpI/AAAAAAAAgJ4/djprbHiZl30/s1600/Machines3.jpg)](http://www.junk-culture.com/2014/02/designer-transforms-old-school-analog.html#more)
 
 There are other examples of drawing machines, once that formulates a question not about the tools but about the user. This are the case of sophisticated robots armed with regular brushes and analog paint. These robots mimic our use of this tools in the search of becoming autonomous agents. [eDavid](http://www.informatik.uni-konstanz.de/en/edavid/news/) designed by Oliver Deussen and Thomas Lindemeier is an example of a machine that performs accurate drawings while the robot design by [Benjamin Grosser](http://bengrosser.com/projects/interactive-robotic-painting-machine/) explores into some "expressive" visual representation of sound.
 
-[![Ben Grosser Drawing Machine](http://bengrosser.com/wp-content/resources/overview1-800.jpg" width="575" "Ben Grosser Drawing Machine")](http://bengrosser.com/projects/interactive-robotic-painting-machine/)
+[![Ben Grosser Drawing Machine](http://bengrosser.com/wp-content/resources/overview1-800.jpg)](http://bengrosser.com/projects/interactive-robotic-painting-machine/)
 
 #### More references to drawing machines
 

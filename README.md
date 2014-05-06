@@ -1,6 +1,4 @@
 
-## vPlotter
-
 ### 1.Basic principes 
 
 The vPlotter is essentially a vertical drawing machine that consists of a marker suspended between two motors which moves it over a wall surface.

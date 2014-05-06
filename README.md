@@ -298,7 +298,7 @@ It's possible that the user does not have the technical knowledge to use the API
 
 Wall Plotter has been around for a while. My work is continuing what others have started. The first documented wall-plotter was develop by [Jurg Lehni]((http://juerglehni.com), and was called [Hektor](http://juerglehni.com/works/hektor/). Jurg is a fascinating artist committed to tool making, especially related to drawing.
 
-[![Hektor by Jurg Lehni](http://juerglehni.com/thumbs/a804659b633f602eebe228553af0ba16.960.0.0.0.80.jpg)](http://juerglehni.com/works/hektor/)
+[![Hektor by Jurg Lehni](images/hektor.jpg)](http://juerglehni.com/works/hektor/)
 
 In my case I start working based on [Alexander Weber's](http://tinkerlog.com/) wall plotter called [Kritzler](http://tinkerlog.com/2011/09/02/der-kritzler/). He's done amazing work documenting the process together with comprenhensible [code](https://github.com/tinkerlog/Kritzler). This version is designed to run with an Arduino plugged into a computer. My first effort on this project was porting the code to openFrameworks to then compile and run on the RaspberryPi, but the basic core logics behind the algorithmic kinematics are pretty much the same as what Alex wrote.
 

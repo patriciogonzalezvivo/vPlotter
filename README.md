@@ -1,5 +1,5 @@
 
-### 1.Basic principes 
+### Basic principes 
 
 The vPlotter is essentially a vertical drawing machine that consists of a marker suspended between two motors which moves it over a wall surface.
 
@@ -201,7 +201,7 @@ These instructions are then processed in another thread sending each motor the n
 
 These functions are the core operations behind the drawing. To make the vPlotter a proper tool I designed a reliable and flexible infrastructure based on openFrameworks (C++) and Node (JS) on top of a Linux OS running on a raspberryPi.
 
-### 2.Hardware
+### Hardware
 
 - 2 x [Nema 17 Stepper Motor](https://ultimachine.com/content/kysan-1124090-nema-17-stepper-motor)
 
@@ -240,7 +240,7 @@ Because the servo uses frequency of pulses it will use the GPIO number 18 that h
 ![A4988](images/A4988.png)
 
 
-### 3.Software
+### Software
 
 The RaspberryPi uses a derived version of the Debian Linux distribution as its operating system. This software architecture is famous for it stability, security and modularity. Each new program installed onto the computer becomes part of a robust ecosystem of applications that can be re-combined in different ways.
 
@@ -275,7 +275,7 @@ It's possible that the user does not have the technical knowledge to use the API
 
 <iframe src="//player.vimeo.com/video/81298249?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff" width="574" height="323" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 
-#### Software Installation
+##### Software Installation
 
 1. In order to compile and install the vPlotter binaries in the right place you will need to [install openFrameworks](http://openframeworks.cc/setup/raspberrypi/Raspberry-Pi-Getting-Started.html). For that please follow [this guide](http://openframeworks.cc/setup/raspberrypi/Raspberry-Pi-Getting-Started.html). Be prepared, it is going to take a while.
 
@@ -293,7 +293,7 @@ It's possible that the user does not have the technical knowledge to use the API
 	./install.sh
 ~~~
 
-### 4.Precedents & Research
+### Precedents & Research
 
 Wall Plotter has been around for a while. My work is continuing what others have started. The first documented wall-plotter was develop by [Jurg Lehni]((http://juerglehni.com), and was called [Hektor](http://juerglehni.com/works/hektor/). Jurg is a fascinating artist committed to tool making, especially related to drawing.
 
@@ -321,7 +321,7 @@ There are other examples of drawing machines, ones that formulate a question not
 
 [![Ben Grosser Drawing Machine](http://bengrosser.com/wp-content/resources/overview1-800.jpg)](http://bengrosser.com/projects/interactive-robotic-painting-machine/)
 
-#### More references to drawing machines
+##### More references to drawing machines
 
 - [Viktor](http://www.we-find-wildness.com/2011/01/juerg-lehni-viktor/)
 

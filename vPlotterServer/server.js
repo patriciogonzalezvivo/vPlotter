@@ -10,7 +10,7 @@ var url = require('url');     // utility for URLs
 var exec = require('child_process').exec;  // running cmd
 
 var formidable = require('formidable');  // uploading files;
-var mongo = require('mongodb');  // MongoDB
+// var mongo = require('mongodb');  // MongoDB
 
 // Settings
 //
@@ -29,7 +29,7 @@ var status = {'printing' : false,
                            'penUpAngle' : 70,
                            'penDelay' : 200,
                            'OSCPort' : 101010,
-                           'debugDisplay' : true
+                           'debugDisplay' : false
                           }
              };
 

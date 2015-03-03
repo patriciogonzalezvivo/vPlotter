@@ -301,9 +301,9 @@ Wall Plotter has been around for a while. My work is continuing what others have
 
 In my case I start working based on [Alexander Weber's](http://tinkerlog.com/) wall plotter called [Kritzler](http://tinkerlog.com/2011/09/02/der-kritzler/). He's done amazing work documenting the process together with comprenhensible [code](https://github.com/tinkerlog/Kritzler). This version is designed to run with an Arduino plugged into a computer. My first effort on this project was porting the code to openFrameworks to then compile and run on the RaspberryPi, but the basic core logics behind the algorithmic kinematics are pretty much the same as what Alex wrote.
 
-[![Kritzler by Alexander Weber](http://tinkerlog.com/wordpress/wp-content/uploads/2011/09/b_img-1956.jpg)](http://tinkerlog.com/2011/09/02/der-kritzler/)
+[![Kritzler by Alexander Weber](https://tinkerlog1.files.wordpress.com/2011/09/b_img-1956.jpg)](http://tinkerlog.com/2011/09/02/der-kritzler/)
 
-[![Alexander documentation](http://tinkerlog.com/wordpress/wp-content/uploads/2011/09/b_img-1366.jpg)](http://tinkerlog.com/2011/09/02/der-kritzler/)
+[![Alexander documentation](https://tinkerlog1.files.wordpress.com/2011/09/b_img-1366.jpg)](http://tinkerlog.com/2011/09/02/der-kritzler/)
 
 While I was experimenting with the Plotter I rapidly discovered how important it is to calculate the right printing area. The variations on the tensions on the strings that hold the plotter head are vital to obtain good results on the marker traces.
 
